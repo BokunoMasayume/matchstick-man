@@ -51,3 +51,6 @@ matchstick.cancelMotion('walk' );
 ```
 
 以上是设想实现的结构和功能，等实现后还想要加个k帧的网页编辑器，导入`stickObj`，k完帧导出`motionFrames`。
+
+------
+看了下svg animate和transform...看来套壳就好了

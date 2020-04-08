@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+<body>
+    <script src="./build/bundle.js"></script>
+    <script>
+        window.test = new Matchstick({
+            eles:[{
+                type:"line",
+                attrs:{
+                    x1:1,
+                    y1:0,
+                    x2:100,
+                    y2:0
+                }
+            }],
+            trans:"tranlate(0,20)",
+            subs:{
+                "body":{
+                    eles:[{
+                        type:'circle',
+                        attrs:{
+                            cx:0
+                        }
+                    }]
+                }
+            }
+        });
+
+        console.log(test);
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{
+  "name": "matchstick-man",
+  "version": "1.0.0",
+  "description": "我打算做这样一个东西\r ```js\r //火柴人结构信息\r let stickObj = {//一个<g>\r     _:{ /*根图形*/ },\r     \"body\"{\r         _:{/*body 图形*/}\r         \"left_arm\":{} //将放在一个<g>中，统一transform\r         ...\r     }\r };\r //新建火柴人\r let matchstick = new Matchstick(stickObj);",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BokunoMasayume/matchstick-man.git"
+  },
+  "keywords": [
+    "svg",
+    "animation"
+  ],
+  "author": "BokunoMasayume",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BokunoMasayume/matchstick-man/issues"
+  },
+  "homepage": "https://github.com/BokunoMasayume/matchstick-man#readme",
+  "devDependencies": {
+    "@babel/core": "^7.8.6",
+    "@babel/preset-env": "^7.8.6",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
