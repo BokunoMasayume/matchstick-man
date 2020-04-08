@@ -1,4 +1,5 @@
 const parse = require('./lib/parse');
+const generateMotion = require('./lib/generateMotion');
 // let obj = {//<g>
 //     eles:[
 //         {
@@ -32,7 +33,7 @@ class Matchstick{
         //generate this.body
         this.parseBody(stickObj);
 
-        this.motions = [];
+        this.motions = new Set();
     }
 
     /**
@@ -69,7 +70,10 @@ class Matchstick{
     }
 
     registe(motionName , frames){
-
+        this[motionName] = generateMotion(motionName,frames);
+        if(this[motionName instanceof Function]){
+            this.motions.add(motionName);
+        }
     }
 }
 

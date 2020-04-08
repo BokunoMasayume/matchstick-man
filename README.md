@@ -39,8 +39,8 @@ matchstick.registe('walk' , walkFrames);
 
 //动作方法选项
 let opt = {
-    repeat: Number | 'infinite',
-    duration: Number //ms
+    repeat: Number | 'indefinite',
+    duration: String
 }
 //动作
 matchstick.walk(opt);
