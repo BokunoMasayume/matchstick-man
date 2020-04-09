@@ -27,7 +27,7 @@
     <script>
         window.test = new Matchstick({
             
-            trans:"translate(20,20)",
+            trans:"translate(200,20)",
             subs:{
                 "head":{
                     eles:[
@@ -89,6 +89,33 @@
             }
         });
 
+        test.registe("move",{
+            0:{
+                "head.body":{
+                    "rotate":0
+                },
+                "head.body.left_arm":{
+                    rotate:0
+                }
+            },
+            50:{
+                "head.body":{
+                    rotate:100
+                },
+                "head.body.left_arm":{
+                    rotate:200
+                }
+            },
+            100:{
+                "head.body":{
+                    rotate:0
+                },
+                "head.body.left_arm":{
+                    rotate:0
+                }
+            }
+        });
+
         console.log(test);
         // document.getElementsByTagName('svg')[0].appendChild(test.body.group);
         let svg = document.createElementNS("http://www.w3.org/2000/svg" , 'svg');
@@ -97,6 +124,10 @@
         svg.setAttribute("viewBox","0 0 1000 800");
         svg.appendChild(test.body.group);
         document.body.appendChild(svg);
+
+        test.move({
+            
+        });
     </script>
 </body>
 </html>
