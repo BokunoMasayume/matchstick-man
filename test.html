@@ -6,32 +6,97 @@
     <title>test</title>
 </head>
 <body>
+    <!-- //TODO xmlns vs xmlns:xlink -->
+    <!-- <svg width="1000" height="800" viewBox="0 0 1000 800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> -->
+        <!-- <g transform="translate(200,20)">
+            <g>
+                <circle cx="0" cy="0" r="10" fill="black"></circle>
+                <g>
+                    <line x1="0" y1="0" x2="0" y2="100" stroke="black"></line>
+                    <g transform="translate(0,40)">
+                        <line x1="0" y1="0" x2="50" y2="0" stroke="black"></line>
+                    </g>
+                    <g transform="translate(0, 50)">
+                        <line x1="0" y1="0" x2="50" y2="0" stroke="black"></line>
+                    </g>
+                </g>
+            </g>
+        </g> -->
+    <!-- </svg> -->
     <script src="./build/bundle.js"></script>
     <script>
         window.test = new Matchstick({
-            eles:[{
-                type:"line",
-                attrs:{
-                    x1:1,
-                    y1:0,
-                    x2:100,
-                    y2:0
-                }
-            }],
-            trans:"tranlate(0,20)",
+            
+            trans:"translate(20,20)",
             subs:{
-                "body":{
-                    eles:[{
-                        type:'circle',
-                        attrs:{
-                            cx:0
+                "head":{
+                    eles:[
+                        {
+                            type:"circle",
+                            attrs:{
+                                cx:0,
+                                cy:0,
+                                r:10,
+                                fill:"black"
+                            }
                         }
-                    }]
+                    ],
+                    subs:{
+                        "body":{
+                            eles:{
+                                type:"line",
+                                attrs:{
+                                    x1:0,
+                                    y1:0,
+                                    x2:0,
+                                    y2:100,
+                                    stroke:"black"
+                                }
+                            },
+                            subs:{
+                                "left_arm":{
+                                    eles:{
+                                        type:"line",
+                                        attrs:{
+                                            x1:0,
+                                            y1:0,
+                                            x2:50,
+                                            y2:0,
+                                    stroke:"black"
+
+                                        }
+                                    },
+                                    trans:"translate(0,40)"
+                                },
+                                "right_arm":{
+                                    eles:{
+                                        type:"line",
+                                        attrs:{
+                                            x1:0,
+                                            y1:0,
+                                            x2:50,
+                                            y2:0,
+                                    stroke:"black"
+
+                                        }
+                                    },
+                                    trans: "translate(0, 50)"
+                                }
+                            }
+                        }
+                    }
                 }
             }
         });
 
         console.log(test);
+        // document.getElementsByTagName('svg')[0].appendChild(test.body.group);
+        let svg = document.createElementNS("http://www.w3.org/2000/svg" , 'svg');
+        svg.setAttribute( "width","1000");
+        svg.setAttribute( "height","800");
+        svg.setAttribute("viewBox","0 0 1000 800");
+        svg.appendChild(test.body.group);
+        document.body.appendChild(svg);
     </script>
 </body>
 </html>

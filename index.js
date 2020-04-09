@@ -65,7 +65,7 @@ class Matchstick{
 
     //invoke cleanAnimas
     cancelMotion(motionName){
-        this.cleanAnims(motionName);
+        this.cleanAnims(`_${motionName}_motion`);
         return this;
     }
 
