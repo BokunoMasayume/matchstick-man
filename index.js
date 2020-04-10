@@ -1,35 +1,20 @@
 const parse = require('./lib/parse');
 const generateMotion = require('./lib/generateMotion');
-// let obj = {//<g>
-//     eles:[
-//         {
-//             type: "tag name",
-//             attrs:{
-//                  //attributes
-//              }
-//         }
-//     ],
-//     trans:[
-//         "translate(0 ,20)",...
-//     ],
-//     subs:{
-//         "name1" : obj,//a <g>
-//         "name2" :obj,//a <g>
-//         ...
-//     }
 
-// }
-
-// body={
-//     group :Element,
-//     subs:{
-//         "name1":SVGGElement,
-//         "name2":SVGGElement
-//     }
-// }
 
 class Matchstick{
-    constructor(stickObj){
+
+    /**
+     * 
+     * @constructor
+     * @param {Array} obj - object build message
+     *  - eles  - {Object[]|Object} - elements in the group 
+     *  - trans - {String[]|String} - transforms for this group
+     *  - subs  - Array subgroups
+     * @param {{tagName:{attrname:String}}} defaults
+     */
+    constructor(stickObj , defaults){
+        this.use(defaults);
         //generate this.body
         this.parseBody(stickObj);
 
@@ -37,11 +22,54 @@ class Matchstick{
     }
 
     /**
+     * set default value to attribute of specific tag
+     * @param {{tagName:{attr:string}}} opt 
+     * @param {{clean:boolean}} optopt - options
+     *  - clean : defalut false ,clean all other default values of all other tagnanes
+     *  - cover:  default false, clean all other default values of specifced tag in opt
+     * @example
+     * this.use({
+     *      line:{
+     *          'stroke-width':10
+     *      }
+     * },{
+     *  clean:true
+     * })
+     */
+    use(opt , optopt){
+        if(!opt)return;
+        if(!(opt instanceof Object)){
+            console.warn("optoins in Matchstick.use must be a object,but is ",opt);
+            return ;
+        }
+        if(!optopt)optopt = {};
+        let clean= optopt.clean || false;
+        let cover = optopt.cover || false;
+
+        if(!(this.defaultes instanceof Object) || clean){
+            this.defaultes = {}
+        }
+
+        Object.keys(opt).forEach(tag=>{
+            if(cover || !this.defaultes[tag]){
+                this.defaultes[tag] = {}
+            }
+
+            Object.assign(this.defaultes[tag] , opt[tag]);
+        })
+
+
+    }
+
+    /**
      * parse body obj 
-     * @param {Object} obj 
+     * @param {Array} obj - object build message
+     *  - eles  - {Object[]|Object} - elements in the group 
+     *  - trans - {String[]|String} - transforms for this group
+     *  - subs  - Array subgroups
      */
     parseBody(obj){
-        this.body = parse(obj); 
+        this.body = parse(obj , this.defaultes); 
         return this;
     }
 
@@ -65,15 +93,48 @@ class Matchstick{
 
     //invoke cleanAnimas
     cancelMotion(motionName){
-        this.cleanAnims(`_${motionName}_motion`);
+        this.cleanAnims(`._${motionName}_motion`);
         return this;
     }
 
+    /**
+     * 
+     * @param {String} motionName - motion's name like 'walk' 'idle'
+     * @param {Object} frames - keyframes 
+     * @example
+     * this.registe('walk',{
+     *      0:{
+     *          body:{
+     *              rotate:10
+     *          }
+     *      },
+     *      50:{
+     *          arm:{
+     *              skewX:12
+     *          }
+     *      },
+     *      100:{
+     *          body:{
+     *              rotate:20
+     *          }
+     *      }
+     * })
+     */
     registe(motionName , frames){
         this[motionName] = generateMotion(motionName,frames);
         if(this[motionName instanceof Function]){
             this.motions.add(motionName);
         }
+    }
+
+    //TODO for regexp detect group name
+    getFlatList(prefix){
+        this.flatMap = {};
+        if(!this.body)return;
+
+        let pre = prefix || "";
+
+        
     }
 }
 

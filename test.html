@@ -60,7 +60,7 @@
                                         attrs:{
                                             x1:0,
                                             y1:0,
-                                            x2:50,
+                                            x2:-50,
                                             y2:0,
                                     stroke:"black"
 
@@ -80,14 +80,21 @@
 
                                         }
                                     },
-                                    trans: "translate(0, 50)"
+                                    trans: "translate(0, 40)"
                                 }
                             }
                         }
                     }
                 }
             }
-        });
+        },
+        {
+            line:{
+                "stroke-width": 10,
+                "stroke-linecap":"round"
+            }
+        }
+        );
 
         test.registe("move",{
             0:{

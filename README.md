@@ -54,3 +54,12 @@ matchstick.cancelMotion('walk' );
 
 ------
 看了下svg animate和transform...看来套壳就好了
+
+# todo
+丰富一下frames中分组的查询的方式，目前支持id和xxx.xxx.xx路径访问单个分组
+考虑新加支持tag名，正则匹配路径访问多个分组
+- `#id` :heavy_check_mark:
+- `root.body.arm` :heavy_check_mark:
+- `.*\.arm`
+- `root.body.arm>line`
+- `.*\.arm>line`
