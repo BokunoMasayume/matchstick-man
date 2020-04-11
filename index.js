@@ -2,6 +2,8 @@ const parse = require('./lib/parse');
 const generateMotion = require('./lib/generateMotion');
 const getOrigin = require('./lib/getOrigin');
 const attach = require('./lib/events');
+const resetTransform = require('./lib/reset');
+const gf = require('./lib/getFrame');
 
 class Matchstick{
 
@@ -155,6 +157,16 @@ class Matchstick{
 
     attachEvent(finder , type){
         attach(finder , type , this.body);
+    }
+
+    reset(){
+        resetTransform(this.body);
+    }
+
+    getFrame(){
+        let frame = {}
+        gf("" ,this.body , frame);
+        return frame;
     }
 }
 

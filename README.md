@@ -34,7 +34,6 @@ let walkFrames={
 };
 
 //给火柴人注册walk动作方法
-//现将walkFrames分割成单个frame过程(比如0~20一个函数， 20~100一个函数)，每个frame生成一个函数，然后用类似koa-compose的方法连接起来，一个运行完自动启动下一个（next()），启动前检查cancel标签
 matchstick.registe('walk' , walkFrames);
 
 //动作方法选项
@@ -48,18 +47,25 @@ matchstick.walk(opt);
 //停止动作
 matchstick.cancelMotion('walk' );
 
+//计算各个部分的转换矩阵，目前给attachEvent用，明天废弃吧
+matchstick.attachOrigin();
+//给指定部分添加事件监听，可以用鼠标拖动改变图形，目前只支持rotate
+matchstick.attachEvent("body.right_leg.right_calf" , "rotate");
+matchstick.attachEvent("body.right_leg","rotate");
+...
+//得到鼠标改变的图形变形信息，可用在注册动作中
+let frame = matchstick.getFrame();
+matchstick.registe("foo",{
+    0:frame,
+    100:matchstick.getFrame();
+});
+
+
 ```
 
-以上是设想实现的结构和功能，等实现后还想要加个k帧的网页编辑器，导入`stickObj`，k完帧导出`motionFrames`。
 
 ------
 看了下svg animate和transform...看来套壳就好了
 
 # todo
-丰富一下frames中分组的查询的方式，目前支持id和xxx.xxx.xx路径访问单个分组
-考虑新加支持tag名，正则匹配路径访问多个分组
-- `#id` :heavy_check_mark:
-- `root.body.arm` :heavy_check_mark:
-- `.*\.arm`
-- `root.body.arm>line`
-- `.*\.arm>line`
+编辑器 导入`stickObj`，k完帧导出`motionFrames`。
