@@ -25,103 +25,333 @@
     <!-- </svg> -->
     <script src="./build/bundle.js"></script>
     <script>
+        // trans:"translate(200,20)",
+        //     subs:
+            // { 
+            //     "head":{
+            //         eles:[
+            //             {
+            //                 type:"circle",
+            //                 attrs:{
+            //                     cx:0,
+            //                     cy:0,
+            //                     r:10,
+            //                     fill:"black"
+            //                 }
+            //             }
+            //         ],
+            //         subs:{
+            //             "body":{
+            //                 eles:{
+            //                     type:"line",
+            //                     attrs:{
+            //                         x1:0,
+            //                         y1:0,
+            //                         x2:0,
+            //                         y2:100,
+            //                         stroke:"black"
+            //                     }
+            //                 },
+            //                 subs:{
+            //                     "left_arm":{
+            //                         eles:{
+            //                             type:"line",
+            //                             attrs:{
+            //                                 x1:0,
+            //                                 y1:0,
+            //                                 x2:-50,
+            //                                 y2:0,
+            //                         stroke:"black"
+
+            //                             }
+            //                         },
+            //                         trans:"translate(0,40)"
+            //                     },
+            //                     "right_arm":{
+            //                         eles:{
+            //                             type:"line",
+            //                             attrs:{
+            //                                 x1:0,
+            //                                 y1:0,
+            //                                 x2:50,
+            //                                 y2:0,
+            //                         stroke:"black"
+
+            //                             }
+            //                         },
+            //                         trans: "translate(0, 40)"
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
+    </script>
+    <script>
         window.test = new Matchstick({
-            
-            trans:"translate(200,20)",
+            // trans:"translate(200,200)",
             subs:{
-                "head":{
-                    eles:[
-                        {
-                            type:"circle",
-                            attrs:{
-                                cx:0,
-                                cy:0,
-                                r:10,
-                                fill:"black"
-                            }
+                "body":{
+                    eles:{
+                        type:"line",
+                        attrs:{
+                            x2:0,
+                            y2:120
                         }
-                    ],
+                    },
+                    trans:"translate(200,200)",
                     subs:{
-                        "body":{
+                        "head":{
+                            eles:{
+                                type:"circle",
+                                attrs:{
+                                    r:15
+                                }
+                            },
+                            
+                        },
+                        "left_arm":{
                             eles:{
                                 type:"line",
                                 attrs:{
-                                    x1:0,
-                                    y1:0,
-                                    x2:0,
-                                    y2:100,
-                                    stroke:"black"
+                                    x2:-50,
+                                    y2:0
                                 }
                             },
+                            trans:"translate(0,50) rotate(-90)",
                             subs:{
-                                "left_arm":{
+                                "left_forearm":{
+                                    trans:"translate(-50,0) rotate(-90)",
                                     eles:{
                                         type:"line",
                                         attrs:{
-                                            x1:0,
-                                            y1:0,
-                                            x2:-50,
-                                            y2:0,
-                                    stroke:"black"
-
+                                            x2:0,
+                                            y2:-45
                                         }
-                                    },
-                                    trans:"translate(0,40)"
-                                },
-                                "right_arm":{
+                                    }
+                                }
+                            }
+
+                        },
+                        "right_arm":{
+                            eles:{
+                                type:"line",
+                                attrs:{
+                                    x2:50,
+                                    y2:0
+                                }
+                            },
+                            trans:"translate(0,50) rotate(90)",
+                            subs:{
+                                "right_forearm":{
                                     eles:{
                                         type:"line",
                                         attrs:{
-                                            x1:0,
-                                            y1:0,
-                                            x2:50,
-                                            y2:0,
-                                    stroke:"black"
-
+                                            x2:0,
+                                            y2:-45
                                         }
                                     },
-                                    trans: "translate(0, 40)"
+                                    trans:"translate(50,0) rotate(90)"
+                                }
+                            }
+                        },
+                        "left_leg":{
+                            eles:{
+                                type:"line",
+                                attrs:{
+                                    x2:-70,
+                                    y2:0
+                                }
+                            },
+                            trans:"translate(0,120) rotate(-90)",
+                            subs:{
+                                "left_calf":{
+                                    eles:{
+                                        type:"line",
+                                        attrs:{
+                                            x2:0,
+                                            y2:70
+                                        }
+                                    },
+                                    trans:"translate(-70,0) rotate(90)"
+                                }
+                            }
+                        },
+                        "right_leg":{
+                            eles:{
+                                type:"line",
+                                attrs:{
+                                    x2:70,
+                                    y2:0
+                                }
+                            },
+                            trans:"translate(0,120) rotate(90)",
+                            subs:{
+                                "right_calf":{
+                                    eles:{
+                                        type:"line",
+                                        attrs:{
+                                            x2:0,
+                                            y2:70
+                                        }
+                                    },
+                                    trans:"translate(70,0) rotate(-90)"
                                 }
                             }
                         }
                     }
                 }
             }
+            
         },
         {
             line:{
                 "stroke-width": 10,
-                "stroke-linecap":"round"
+                "stroke-linecap":"round",
+                x1:0,
+                y1:0,
+                stroke:"black"
+            },
+            circle:{
+                cx:0,
+                cy:0,
+                fill:"black"
             }
         }
         );
 
-        test.registe("move",{
-            0:{
-                "head.body":{
-                    "rotate":0
-                },
-                "head.body.left_arm":{
-                    rotate:0
-                }
+        // test.registe("move",{
+        //     0:{
+        //         "head.body":{
+        //             "rotate":0
+        //         },
+        //         "head.body.left_arm":{
+        //             rotate:0
+        //         }
+        //     },
+        //     50:{
+        //         "head.body":{
+        //             rotate:100
+        //         },
+        //         "head.body.left_arm":{
+        //             rotate:200
+        //         }
+        //     },
+        //     100:{
+        //         "head.body":{
+        //             rotate:0
+        //         },
+        //         "head.body.left_arm":{
+        //             rotate:0
+        //         }
+        //     }
+        // });
+        k1 = {
+            "body":{
+                translate:"5 5"
             },
-            50:{
-                "head.body":{
-                    rotate:100
-                },
-                "head.body.left_arm":{
-                    rotate:200
-                }
+            "body.left_arm":{
+                rotate:30
             },
-            100:{
-                "head.body":{
-                    rotate:0
-                },
-                "head.body.left_arm":{
-                    rotate:0
-                }
+            "body.right_arm":{
+                rotate:-30
+            },
+            "body.left_arm.left_forearm":{
+                rotate:50
+            },
+            "body.right_arm.right_forearm":{
+                rotate:50
+            },
+            "body.left_leg":{
+                rotate:-30
+            },
+            "body.right_leg":{
+                rotate:30
+            },
+            "body.left_leg.left_calf":{
+                rotate:-20
+            },
+            "body.right_leg.right_calf":{
+                rotate:-20
             }
-        });
+        };
+
+        k2 = {
+            "body":{
+                translate:"0 0"
+            },
+            "body.left_arm":{
+                rotate:0
+            },
+            "body.right_arm":{
+                rotate:0
+            },
+            "body.left_arm.left_forearm":{
+                rotate:0
+            },
+            "body.right_arm.right_forearm":{
+                rotate:0
+            },
+            "body.left_leg":{
+                rotate:0
+            },
+            "body.right_leg":{
+                rotate:0
+            },
+            "body.left_leg.left_calf":{
+                rotate:0
+            },
+            "body.right_leg.right_calf":{
+                rotate:0
+            }
+        };
+
+        k3={
+            "body":{
+                translate:"10 10"
+            },
+            "body.left_arm":{
+                rotate:35
+            },
+            "body.right_arm":{
+                rotate:-35
+            },
+            "body.left_arm.left_forearm":{
+                rotate:50
+            },
+            "body.right_arm.right_forearm":{
+                rotate:50
+            },
+            "body.left_leg":{
+                rotate:-35
+            },
+            "body.right_leg":{
+                rotate:35
+            },
+            "body.left_leg.left_calf":{
+                rotate:-25
+            },
+            "body.right_leg.right_calf":{
+                rotate:0
+            }
+        };
+        test.attachOrigin();
+        test.attachEvent("body.right_leg" , "rotate");
+        test.attachEvent("body.left_leg" , "rotate");
+        test.attachEvent("body.right_leg.right_calf" , "rotate");
+        test.attachEvent("body.left_leg.left_calf" , "rotate");
+        test.attachEvent("body.left_arm" , "rotate");
+        test.attachEvent("body.right_arm" , "rotate");
+        test.attachEvent("body.left_arm.left_forearm" , "rotate");
+        test.attachEvent("body.right_arm.right_forearm" , "rotate");
+
+        test.registe('walk',{
+            0:k3,
+            15:k1,
+            50:k2,
+            85:k1,
+            100:k3
+        })
 
         console.log(test);
         // document.getElementsByTagName('svg')[0].appendChild(test.body.group);
@@ -131,10 +361,17 @@
         svg.setAttribute("viewBox","0 0 1000 800");
         svg.appendChild(test.body.group);
         document.body.appendChild(svg);
-
-        test.move({
+        // test.walk();
+        // test.move({
             
-        });
+        // });
+
+        // test.body.subs.body.subs.right_arm.group.addEventListener("mousemove",function(e){
+        //     if(e.buttons != 1)return false;
+        //     console.log(e);
+        //     console.log(e.currentTarget.outerHTML);
+        //     e.currentTarget.setAttribute("transform" , e.currentTarget.getAttribute("transform")+" rotate(.1)")
+        // });
     </script>
 </body>
 </html>

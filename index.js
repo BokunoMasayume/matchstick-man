@@ -1,6 +1,7 @@
 const parse = require('./lib/parse');
 const generateMotion = require('./lib/generateMotion');
-
+const getOrigin = require('./lib/getOrigin');
+const attach = require('./lib/events');
 
 class Matchstick{
 
@@ -13,10 +14,10 @@ class Matchstick{
      *  - subs  - Array subgroups
      * @param {{tagName:{attrname:String}}} defaults
      */
-    constructor(stickObj , defaults){
+    constructor(stickObj , defaults , className){
         this.use(defaults);
         //generate this.body
-        this.parseBody(stickObj);
+        this.parseBody(stickObj , className);
 
         this.motions = new Set();
     }
@@ -67,9 +68,10 @@ class Matchstick{
      *  - eles  - {Object[]|Object} - elements in the group 
      *  - trans - {String[]|String} - transforms for this group
      *  - subs  - Array subgroups
+     * @param {String} className - class name attach to this.body.group
      */
-    parseBody(obj){
-        this.body = parse(obj , this.defaultes); 
+    parseBody(obj , className){
+        this.body = parse(obj , this.defaultes, className); 
         return this;
     }
 
@@ -127,14 +129,32 @@ class Matchstick{
         }
     }
 
-    //TODO for regexp detect group name
-    getFlatList(prefix){
-        this.flatMap = {};
-        if(!this.body)return;
+    /**
+     * attacj origin object to every level group
+     */
+    attachOrigin(){
+        let parentMat = [
+            [1,0,0],
+            [0,1,0],
+            [0,0,1]
+        ]
 
-        let pre = prefix || "";
+        getOrigin(this.body , parentMat);
+        
+    }
+
+    //TODO for regexp detect group name
+    // getFlatList(prefix){
+    //     this.flatMap = {};
+    //     if(!this.body)return;
+
+    //     let pre = prefix || "";
 
         
+    // }
+
+    attachEvent(finder , type){
+        attach(finder , type , this.body);
     }
 }
 
