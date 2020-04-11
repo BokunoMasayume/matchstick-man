@@ -1,6 +1,7 @@
 # matchstick-man 火柴-人（额鹅鹅鹅鹅鹅鹅）
+> svg 动画辅助
 
-我打算做这样一个东西
+# Usage
 ```js
 //火柴人结构信息
 let stickObj = {//一个<g>
@@ -64,8 +65,7 @@ matchstick.registe("foo",{
 ```
 
 
-------
-看了下svg animate和transform...看来套壳就好了
+
 
 # todo
 编辑器 导入`stickObj`，k完帧导出`motionFrames`。
