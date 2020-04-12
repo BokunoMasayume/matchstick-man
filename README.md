@@ -75,4 +75,4 @@ matchstick.registe("foo",{
 translate -> rotate -> scale -> skewX -> skewY
 1. reparseBdoy
 2. createGroupAnimas
-3. events ["translate()" , "rotate()"]=> {translate: ,rotate:}
+3. tmpTrans: ["translate()" , "rotate()"]=> {translate: ,rotate:}
