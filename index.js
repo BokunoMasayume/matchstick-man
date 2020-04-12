@@ -1,9 +1,10 @@
-const parse = require('./lib/parse');
+const {parse , reparse} = require('./lib/parse');
 const generateMotion = require('./lib/generateMotion');
 const getOrigin = require('./lib/getOrigin');
 const attach = require('./lib/events');
 const resetTransform = require('./lib/reset');
 const gf = require('./lib/getFrame');
+const {parseFinder , getPathType , hasChildNode} = require('./lib/util')
 
 class Matchstick{
 
@@ -60,7 +61,7 @@ class Matchstick{
 
             Object.assign(this.defaultes[tag] , opt[tag]);
         })
-
+        return this;
 
     }
 
@@ -129,6 +130,8 @@ class Matchstick{
         if(this[motionName instanceof Function]){
             this.motions.add(motionName);
         }
+
+        return this;
     }
 
     /**
@@ -142,6 +145,8 @@ class Matchstick{
         ]
 
         getOrigin(this.body , parentMat);
+
+        return this;
         
     }
 
@@ -157,10 +162,12 @@ class Matchstick{
 
     attachEvent(finder , type){
         attach(finder , type , this.body);
+        return this;
     }
 
     reset(){
         resetTransform(this.body);
+        return this;
     }
 
     getFrame(){
@@ -168,7 +175,71 @@ class Matchstick{
         gf("" ,this.body , frame);
         return frame;
     }
+
+    addSub(finder ,subname, subms){
+        if(!subname|| /[.#*%@()]/.test(subname)){
+            console.warn("not legal subname:",subname);
+            return this;
+        }
+        if(!(subms instanceof Matchstick)){
+            console.warn("must an instance of Matchstick");
+            return this;
+        }
+        let p = parseFinder(finder);
+        if(!p || p.type!="normal"){
+            console.warn(`finder '${finder}' is not legal`);
+            return this;
+        }
+
+        let parent = p.path.reduce((acc, e)=>{
+            return acc.subs[e]
+        } ,this.body);
+
+        if(parent.subs[subname]){
+            console.warn(`fail to add sub :under '${finder}' '${subname}' has already exist`);
+            return this;
+        }
+
+        parent.subs[subname] = subms.body;
+
+        this.reparseBody();
+        return this;
+    }
+
+    removeSub(finder ){
+        let p = parseFinder(finder);
+        if(!p || p.type!='normal'){
+            console.warn(`finder '${finder}' is not legal`);
+            return this;
+        }
+
+        let parent;
+        let subname;
+        let sub = p.path.reduce((acc, e)=>{
+            parent = acc;
+            subname = e;
+            return acc.subs[e]
+        } ,this.body);
+
+        if(hasChildNode(parent.group , sub.group)){
+            parent.group.removeChild(sub.group);
+        }
+        delete parent.subs[subname];
+
+    }
+
+    reparseBody(){
+        // let prev = this.body.group;
+        reparse(this.body);
+        // if(prev.parentElement){
+        //     prev.parentElement.insertBefore(this.body.group , prev);
+        //     prev.parentElement.removeChild(prev);
+        // }
+        return this;
+    }
 }
+
+
 
 module.exports = Matchstick;
 

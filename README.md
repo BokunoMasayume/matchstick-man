@@ -70,3 +70,9 @@ matchstick.registe("foo",{
 # todo
 - 编辑器 导入`stickObj`，k完帧导出`motionFrames`。
 - 组件化 ，Matchsitck实例中不存SVGElement,存SVGElement.outerHTML , 新加attach2parent(parentElement) 方法
+
+# log
+translate -> rotate -> scale -> skewX -> skewY
+1. reparseBdoy
+2. createGroupAnimas
+3. events ["translate()" , "rotate()"]=> {translate: ,rotate:}
