@@ -185,7 +185,7 @@
                                     y2:0
                                 }
                             },
-                            trans:"translate(0,120) rotate(90)",
+                            trans:"translate(0,120) ",
                             subs:{
                                 "right_calf":{
                                     eles:{
@@ -195,7 +195,7 @@
                                             y2:70
                                         }
                                     },
-                                    trans:"translate(70,0) rotate(-90)"
+                                    trans:"translate(70,0) "
                                 }
                             }
                         }
@@ -335,25 +335,33 @@
                 rotate:0
             }
         };
+
+
+
+        k1 = {"body.left_arm":{"rotate":"8.320709583853114"},"body.left_arm.left_forearm":{"rotate":"-27.107774525041147"},"body.right_arm":{"rotate":"-9.696911956458395"},"body.right_arm.right_forearm":{"rotate":"-17.747197375790712"},"body.left_leg":{},"body.left_leg.left_calf":{},"body.right_leg":{},"body.right_leg.right_calf":{"rotate":"12.528807709151511"}};
+        k2 ={"body.left_arm":{"rotate":"22.614924201466696"},"body.left_arm.left_forearm":{"rotate":"-27.107774525041147"},"body.right_arm":{"rotate":"-9.696911956458395"},"body.right_arm.right_forearm":{"rotate":"-17.747197375790712"},"body.left_leg":{},"body.left_leg.left_calf":{},"body.right_leg":{"rotate":"-1.6850485214808293"},"body.right_leg.right_calf":{"rotate":"44.60115580110834"}};
+        k3 = {"body.left_arm":{"rotate":"32.25246231439765"},"body.left_arm.left_forearm":{"rotate":"-27.107774525041147"},"body.right_arm":{"rotate":"-15.979138117870995"},"body.right_arm.right_forearm":{"rotate":"-11.45473748209958"},"body.left_leg":{},"body.left_leg.left_calf":{},"body.right_leg":{"rotate":"-1.6850485214808293"},"body.right_leg.right_calf":{"rotate":"70.55313501465287"}};
+        k4 = {"body.left_arm":{"rotate":"46.873336303029305"},"body.left_arm.left_forearm":{"rotate":"-40.5726555857584"},"body.right_arm":{"rotate":"-28.994115882460285"},"body.right_arm.right_forearm":{"rotate":"-20.348639429816384"},"body.left_leg":{},"body.left_leg.left_calf":{},"body.right_leg":{"rotate":"25.620094994429127"},"body.right_leg.right_calf":{"rotate":"70.55313501465287"}};
+
+
         test.attachOrigin();
         test.attachEvent("body.right_leg" , "rotate");
-        test.attachEvent("body.left_leg" , "rotate");
+        // test.attachEvent("body.left_leg" , "rotate");
         test.attachEvent("body.right_leg.right_calf" , "rotate");
-        test.attachEvent("body.left_leg.left_calf" , "rotate");
-        test.attachEvent("body.left_arm" , "rotate");
-        test.attachEvent("body.right_arm" , "rotate");
-        test.attachEvent("body.left_arm.left_forearm" , "rotate");
-        test.attachEvent("body.right_arm.right_forearm" , "rotate");
+        // test.attachEvent("body.left_leg.left_calf" , "rotate");
+        // test.attachEvent("body.left_arm" , "rotate");
+        // test.attachEvent("body.right_arm" , "rotate");
+        // test.attachEvent("body.left_arm.left_forearm" , "rotate");
+        // test.attachEvent("body.right_arm.right_forearm" , "rotate");
         test.attachEvent("body.right_leg" , "translate");
         test.attachEvent("body.right_leg" , "scale");
         test.attachEvent("body.right_leg.right_calf" , "translate");
 
         test.registe('walk',{
-            0:k3,
-            15:k1,
-            50:k2,
-            85:k1,
-            100:k3
+            0:k1,
+            33:k2,
+            67:k3,
+            100:k4
         })
 
         console.log(test);
