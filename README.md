@@ -76,3 +76,5 @@ translate -> rotate -> scale -> skewX -> skewY
 1. reparseBdoy
 2. createGroupAnimas
 3. tmpTrans: ["translate()" , "rotate()"]=> {translate: ,rotate:}
+
+**m3中的矩阵是转置过得，即每一行是一个基向量， 所以events和getOrigin中 左乘右乘互换了**

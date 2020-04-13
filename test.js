@@ -1,5 +1,7 @@
-const Matchstick = require('./index')
+const m3 = require('./lib/m3');
 
-let a = new Matchstick();
+let mat = m3.rotate(12);
 
-a.use()
+mat = m3.multipy(mat, m3.inverse.rotate(12));
+
+console.log(mat);
