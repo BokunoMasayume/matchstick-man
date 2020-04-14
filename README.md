@@ -94,3 +94,4 @@ e.g. 一条直线
 - 编辑器 导入`stickObj`，k完帧导出`motionFrames`。
     - getFrame方法 ， 可视化3次贝塞尔曲线， 中间状态模拟（.bezier(bezierPoints , startObj, endObj, percent)） , 中间状态显示（.show(transObj)）
 - 组件化 ，使Matchsitck实例中subs的值默认为Matchstick实例，可随时单独操作，更灵活
+- 绑定数据，diff`虽然找个框架就能实现，但自己做着试试，熟悉熟悉mvvm实现`
