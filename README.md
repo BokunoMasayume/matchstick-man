@@ -65,16 +65,32 @@ matchstick.registe("foo",{
 ```
 
 
+# log
+translate -> rotate -> scale -> skewX -> skewY
+
+- m3中的矩阵没转置
+- svg坐标空间
+     ——————————————————————————————————————————>x\
+     |\
+     |\
+     |\
+     |\
+     y
+- **变换是从内到外！！！！！**
+e.g. 一条直线
+```HTML
+<g transform="translate(0,120 ) rotate(30)">
+  <line transform="translate(70,0)" x1="0" y1="0" x2="0" y2="200" stroke="black"> </line>
+</g>
+```
+- 转换过程：
+    - 图形空间 -> translate(70,0) -> rotate(30) -> translate(0,120) -> 显示空间
+
+
+
 
 
 # todo
 - 编辑器 导入`stickObj`，k完帧导出`motionFrames`。
-- 组件化 ，Matchsitck实例中不存SVGElement,存SVGElement.outerHTML , 新加attach2parent(parentElement) 方法
-
-# log
-translate -> rotate -> scale -> skewX -> skewY
-1. reparseBdoy
-2. createGroupAnimas
-3. tmpTrans: ["translate()" , "rotate()"]=> {translate: ,rotate:}
-
-**m3中的矩阵是转置过得，即每一行是一个基向量， 所以events和getOrigin中 左乘右乘互换了**
+    - getFrame方法 ， 可视化3次贝塞尔曲线， 中间状态模拟（.bezier(bezierPoints , startObj, endObj, percent)） , 中间状态显示（.show(transObj)）
+- 组件化 ，使Matchsitck实例中subs的值默认为Matchstick实例，可随时单独操作，更灵活

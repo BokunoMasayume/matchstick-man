@@ -185,7 +185,7 @@
                                     y2:0
                                 }
                             },
-                            trans:"translate(0,120) ",
+                            trans:"translate(0,120) rotate(30)",
                             subs:{
                                 "right_calf":{
                                     eles:{
@@ -356,12 +356,23 @@
         test.attachEvent("body.right_leg" , "translate");
         test.attachEvent("body.right_leg" , "scale");
         test.attachEvent("body.right_leg.right_calf" , "translate");
+        test.attachEvent("body.right_leg", "skew");
 
         test.registe('walk',{
-            0:k1,
-            33:k2,
-            67:k3,
-            100:k4
+            // 0:k1,
+            // 33:k2,
+            // 67:k3,
+            // 100:k4
+            0:{
+                "body.left_arm":{
+                    rotate:0
+                }
+            },
+            100:{
+                "body.left_arm":{
+                    rotate:90
+                }
+            }
         })
 
         console.log(test);
