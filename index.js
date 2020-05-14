@@ -1,7 +1,7 @@
 const {parse , reparse} = require('./lib/parse');
 const generateMotion = require('./lib/generateMotion');
 const getOrigin = require('./lib/getOrigin');
-const attach = require('./lib/events');
+const {attach, detach} = require('./lib/events');
 const resetTransform = require('./lib/reset');
 const gf = require('./lib/getFrame');
 const {parseFinder , getPathType , hasChildNode} = require('./lib/util')
@@ -127,7 +127,7 @@ class Matchstick{
      */
     registe(motionName , frames){
         this[motionName] = generateMotion(motionName,frames);
-        if(this[motionName instanceof Function]){
+        if(this[motionName] instanceof Function){
             this.motions.add(motionName);
         }
 
@@ -162,6 +162,11 @@ class Matchstick{
 
     attachEvent(finder , type){
         attach(finder , type , this.body);
+        return this;
+    }
+
+    detachEvent(finder, type){
+        detach(finder , type , this.body);
         return this;
     }
 

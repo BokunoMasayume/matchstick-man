@@ -4,8 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>test</title>
+    <style>
+        svg{
+            border: 2px solid black;
+        }
+        div{
+            position: fixed;
+            bottom:30%;
+            left:50%;
+            background-color: red;
+            border-radius: 50%;
+            width:6px;
+            height: 6px;
+        }
+    </style>
 </head>
 <body>
+    <div></div>
     <!-- //TODO xmlns vs xmlns:xlink -->
     <!-- <svg width="1000" height="800" viewBox="0 0 1000 800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> -->
         <!-- <g transform="translate(200,20)">
@@ -115,7 +130,9 @@
                                 type:"line",
                                 attrs:{
                                     x2:-50,
-                                    y2:0
+                                    y2:0,
+                                    stroke:"#555"
+
                                 }
                             },
                             trans:"translate(0,50) rotate(-90)",
@@ -126,7 +143,9 @@
                                         type:"line",
                                         attrs:{
                                             x2:0,
-                                            y2:-45
+                                            y2:-45,
+                                    stroke:"#555"
+
                                         }
                                     }
                                 }
@@ -160,7 +179,8 @@
                                 type:"line",
                                 attrs:{
                                     x2:-70,
-                                    y2:0
+                                    y2:0,
+                                    stroke:"#555"
                                 }
                             },
                             trans:"translate(0,120) rotate(-90)",
@@ -170,7 +190,9 @@
                                         type:"line",
                                         attrs:{
                                             x2:0,
-                                            y2:70
+                                            y2:70,
+                                    stroke:"#555"
+
                                         }
                                     },
                                     trans:"translate(-70,0) rotate(90)"
@@ -346,16 +368,19 @@
 
         test.attachOrigin();
         test.attachEvent("body.right_leg" , "rotate");
-        // test.attachEvent("body.left_leg" , "rotate");
+        test.attachEvent("body.left_leg" , "rotate");
         test.attachEvent("body.right_leg.right_calf" , "rotate");
-        // test.attachEvent("body.left_leg.left_calf" , "rotate");
-        // test.attachEvent("body.left_arm" , "rotate");
-        // test.attachEvent("body.right_arm" , "rotate");
-        // test.attachEvent("body.left_arm.left_forearm" , "rotate");
-        // test.attachEvent("body.right_arm.right_forearm" , "rotate");
-        test.attachEvent("body.right_leg" , "translate");
-        test.attachEvent("body.right_leg" , "scale");
-        test.attachEvent("body.right_leg.right_calf" , "translate");
+        test.attachEvent("body.left_leg.left_calf" , "rotate");
+        test.attachEvent("body.left_arm" , "rotate");
+        test.attachEvent("body.right_arm" , "rotate");
+        test.attachEvent("body.left_arm.left_forearm" , "rotate");
+        test.attachEvent("body.right_arm.right_forearm" , "rotate");
+        test.attachEvent("body", "rotate");
+        test.attachEvent("body", "translate");
+
+        // test.attachEvent("body.right_leg" , "translate");
+        // test.attachEvent("body.right_leg" , "scale");
+        // test.attachEvent("body.right_leg.right_calf" , "translate");
         test.attachEvent("body.right_leg", "skew");
 
         test.registe('walk',{
@@ -363,16 +388,20 @@
             // 33:k2,
             // 67:k3,
             // 100:k4
-            0:{
-                "body.left_arm":{
-                    rotate:0
-                }
-            },
-            100:{
-                "body.left_arm":{
-                    rotate:90
-                }
-            }
+            0:{"body":{"translate":"130,144","rotate":"4.226740740024279"},"body.left_arm":{"rotate":"34.93951624502141"},"body.left_arm.left_forearm":{"rotate":"-18.987653947892774"},"body.right_arm":{"rotate":"-36.970402439790035"},"body.right_arm.right_forearm":{"rotate":"-26.076369117972412"},"body.left_leg":{"rotate":"8.28274725755131"},"body.left_leg.left_calf":{"rotate":"10.851106748492553"},"body.right_leg":{"rotate":"19.497670296519654"},"body.right_leg.right_calf":{"rotate":"-68.40756901851618"}}
+            ,
+            17:{"body":{"translate":"130,147","rotate":"4.226740740024279"},"body.left_arm":{"rotate":"31.31296205740308"},"body.left_arm.left_forearm":{"rotate":"-18.987653947892774"},"body.right_arm":{"rotate":"-33.25047956965032"},"body.right_arm.right_forearm":{"rotate":"-19.387257259800332"},"body.left_leg":{"rotate":"22.016383815415878"},"body.left_leg.left_calf":{"rotate":"10.311253025939283"},"body.right_leg":{"rotate":"5.841549558984399"},"body.right_leg.right_calf":{"rotate":"-39.36457068573208"}}
+            ,
+            34:{"body":{"translate":"126,127","rotate":"4.226740740024279"},"body.left_arm":{"rotate":"12.586195546022108"},"body.left_arm.left_forearm":{"rotate":"-18.987653947892774"},"body.right_arm":{"rotate":"-7.486378112746201"},"body.right_arm.right_forearm":{"rotate":"-16.760971992095296"},"body.left_leg":{"rotate":"1.3444190821505453"},"body.left_leg.left_calf":{"rotate":"41.55151033464048"},"body.right_leg":{"rotate":"48.1678381913534"},"body.right_leg.right_calf":{"rotate":"-69.49982887681176"}}
+            ,
+            50:{"body":{"translate":"126,127","rotate":"5.719384548444689"},"body.left_arm":{"rotate":"-35.01187430813556"},"body.left_arm.left_forearm":{"rotate":"-18.987653947892774"},"body.right_arm":{"rotate":"29.734548036851475"},"body.right_arm.right_forearm":{"rotate":"-24.347042961203798"},"body.left_leg":{"rotate":"-43.06398249276128"},"body.left_leg.left_calf":{"rotate":"20.249785228675"},"body.right_leg":{"rotate":"69.786062147187"},"body.right_leg.right_calf":{"rotate":"-69.49982887681176"}}
+            ,
+            67:{"body":{"translate":"126,118","rotate":"6.74723832912381"},"body.left_arm":{"rotate":"-14.642178561587917"},"body.left_arm.left_forearm":{"rotate":"-46.019953454114386"},"body.right_arm":{"rotate":"22.896000002229133"},"body.right_arm.right_forearm":{"rotate":"-20.06675179039939"},"body.left_leg":{"rotate":"-34.101480517969286"},"body.left_leg.left_calf":{"rotate":"39.718379134833235"},"body.right_leg":{"rotate":"58.660106427584424"},"body.right_leg.right_calf":{"rotate":"-50.226543417485665"}}
+            ,
+            84:{"body":{"translate":"132,111","rotate":"7.697245705877148"},"body.left_arm":{"rotate":"2.489103446712193"},"body.left_arm.left_forearm":{"rotate":"-29.482233487520737"},"body.right_arm":{"rotate":"10.174653056770977"},"body.right_arm.right_forearm":{"rotate":"-20.06675179039939"},"body.left_leg":{"rotate":"-13.594135309432254"},"body.left_leg.left_calf":{"rotate":"16.038689431937556"},"body.right_leg":{"rotate":"50.478001587744636"},"body.right_leg.right_calf":{"rotate":"-16.58001451057853"}}
+            ,
+            100:{"body":{"translate":"130,144","rotate":"4.226740740024279"},"body.left_arm":{"rotate":"34.93951624502141"},"body.left_arm.left_forearm":{"rotate":"-18.987653947892774"},"body.right_arm":{"rotate":"-36.970402439790035"},"body.right_arm.right_forearm":{"rotate":"-26.076369117972412"},"body.left_leg":{"rotate":"8.28274725755131"},"body.left_leg.left_calf":{"rotate":"10.851106748492553"},"body.right_leg":{"rotate":"19.497670296519654"},"body.right_leg.right_calf":{"rotate":"-68.40756901851618"}}
+            
         })
 
         console.log(test);
